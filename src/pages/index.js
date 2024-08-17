@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { FaChalkboardTeacher, FaPalette, FaChartBar, FaBook, FaUsers, FaHeadset, FaMoon, FaSun, FaArrowRight, FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 import { useAuth } from '../hooks/useAuth';
@@ -8,7 +7,7 @@ const IndexPage = () => {
   const { isAuthenticated } = useAuth();
   const [darkMode, setDarkMode] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [activeFeature, setActiveFeature] = useState(0);
+  const [activeFeature, setActiveFeature] = useState(0); // Ensure this state is defined
 
   const toggleDarkMode = () => setDarkMode(!darkMode);
 
@@ -117,8 +116,6 @@ const IndexPage = () => {
             </motion.div>
           </div>
         </section>
-
-       
 
         {/* Features Section */}
         <section id="features" className="py-20 bg-white dark:bg-gray-800">
