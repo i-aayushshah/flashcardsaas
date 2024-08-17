@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaChalkboardTeacher, FaPalette, FaChartBar, FaBook, FaUsers, FaHeadset, FaMoon, FaSun, FaArrowRight, FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 import { useAuth } from '../hooks/useAuth';
+import Link from 'next/link';
+
 
 const IndexPage = () => {
   const { isAuthenticated } = useAuth();
