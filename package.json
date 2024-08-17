@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^5.3.1",
+    "@google/generative-ai": "^0.17.0",
     "axios": "^1.7.4",
     "firebase": "^10.13.0",
     "framer-motion": "^11.3.28",

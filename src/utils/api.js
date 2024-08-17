@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: 'http://localhost:5000/api', // Full URL pointing to the Flask backend
 });
 
 export const getFlashcards = () => api.get('/flashcards').then(res => res.data);
