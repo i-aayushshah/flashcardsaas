@@ -1,7 +1,7 @@
 import { useAuth as useClerkAuth } from '@clerk/nextjs';
 
 export function useAuth() {
-  const { isLoaded, isSignedIn, user } = useClerkAuth();
+  const { isLoaded, isSignedIn, user, signOut } = useClerkAuth();
 
   return {
     isAuthenticated: isSignedIn,
@@ -11,5 +11,6 @@ export function useAuth() {
       email: user.primaryEmailAddress?.emailAddress,
       name: `${user.firstName} ${user.lastName}`,
     } : null,
+    signOut,
   };
 }
