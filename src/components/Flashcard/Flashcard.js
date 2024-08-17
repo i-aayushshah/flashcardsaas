@@ -16,15 +16,25 @@ const Flashcard = ({ front, back }) => {
       <motion.div
         className="w-full h-full rounded-lg shadow-lg bg-white flex items-center justify-center p-4 text-center"
         initial={false}
-        animate={{ rotateY: isFlipped ? 180 : 0 }}
+        // animate={{ rotateY: isFlipped ? 180 : 0 }}
         transition={{ duration: 0.6 }}
       >
         {isFlipped ? (
           <div className="transform rotate-y-180">
-            <p className="text-lg font-semibold">{back}</p>
+            <p className="text-lg font-semibold ">
+              <b style={
+                { color: '#ff0000' }
+              }>
+                Answer:</b> <br />
+              {back}</p>
           </div>
         ) : (
-          <p className="text-lg font-semibold">{front}</p>
+          <p className="text-lg font-semibold">
+            <b style={
+               { color: 'green' }
+            }
+            >Question:</b> <br />
+            {front}</p>
         )}
       </motion.div>
     </motion.div>

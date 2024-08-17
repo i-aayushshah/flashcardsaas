@@ -1,5 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+import google.generativeai as genai
+import json
 
 app = Flask(__name__)
 CORS(app)  # This will enable CORS for all routes
@@ -46,5 +48,44 @@ def delete_flashcard(id):
     flashcards = [fc for fc in flashcards if fc['id'] != id]
     return jsonify({'message': 'Flashcard deleted'})
 
+
+@app.route('/api/generate-flashcards', methods=['POST'])
+def generate_flashcards():
+    data = request.json
+    notes = data.get('notes', '')
+
+    # Code to use Gemini API to generate flashcards from notes
+    API_KEY = 'AIzaSyBgTLInXBrx-mhdLStDlFfknwizmWFKb8I'
+    prompt ="""Generate flask cards in the json format below, dont write any other things \n
+    {
+  "flashcards": [
+    { "front": "Flashcard Front 1", "back": "Flashcard Back 1" },
+    { "front": "Flashcard Front 2", "back": "Flashcard Back 2" }
+  ]
+}
+
+
+by seeing the notes below \n
+    """
+    prompt += notes
+
+    genai.configure(api_key=API_KEY)
+    model = genai.GenerativeModel(
+        model_name="gemini-1.5-pro"
+    )
+    response = model.generate_content(prompt)
+
+    # Assuming response.text is a string that looks like a JSON array
+    try:
+        flashcards = json.loads(response.text)
+    except json.JSONDecodeError:
+        return jsonify({'error': 'Failed to generate flashcards'}), 500
+
+    return jsonify(flashcards)
+
+
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+
